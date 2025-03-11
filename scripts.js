@@ -1,8 +1,11 @@
 let humanScore = 0;
 let computerScore = 0;
-const buttons = document.querySelectorAll(".buttonchoose button");
+const buttons = document.querySelectorAll(".buttonchoose div");
 const resultSection = document.querySelector(".result");
 resultSection.classList.toggle('hidden');
+const humanScoreHTML = document.querySelector("#score-me");
+const pcScoreHTML = document.querySelector("#score-pc");
+
 
 function getComputerChoice() {
     let random = Math.random()
@@ -33,7 +36,6 @@ function playRound(humanChoice, pcChoice) {
     if (humanChoice === "rock") {
         if (pcChoice === "rock") {
             result = "Draw";
-
         } else if (pcChoice === "paper") {
             result = "Lose";
             computerScore += 1;
@@ -79,8 +81,8 @@ function display(humanChoice,pcChoice){
     
     resultSection.innerHTML += "<h1>" + textShow + "</h1>"
 
-
-
+    humanScoreHTML.textContent = humanScore;
+    pcScoreHTML.textContent = computerScore;
 }
 
 function playGame() {
@@ -88,7 +90,7 @@ function playGame() {
     let pcChoice;
     buttons.forEach(button => button.addEventListener("click", (e) => {
         if(resultSection.classList.contains('hidden')) {resultSection.classList.toggle('hidden')};
-        humanChoice = e.target.innerHTML;
+        humanChoice = e.target.id;
         console.log(humanChoice);
         pcChoice = getComputerChoice();
         console.log(humanChoice + " " + pcChoice);

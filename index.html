@@ -3,22 +3,37 @@
     <head>
         <title>Rock'n'Paper</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="fonts.css">
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div class="main">
+        <div class="main" >
             <h1>Rock n' Paper</h1>
             <h2>Choose:</h2>
             <div class="buttonchoose">
-                <button id="choice-1">Rock</button>
-                <button id="choice-2">Paper</button>
-                <button id="choice-3">Scissors</button>
+                <div id="Rock" class="annimation-fadeout"><span class="icon-hand-paper-o"></span> Rock</div>
+                <div id="Paper"><span class="icon-hand-grab-o"></span> Paper</div>
+                <div id="Scissors"><span class="icon-hand-scissors-o"></span> Scissors</div>
             </div>
             </div>
             <div class="result"></div>
         </div>
+        <div class="states">
+            <div class="title">SCORE</div>
+            <div class="scores">
+                <div class="human">
+                    <span class="icon-profile-male icon"></span>
+                    <span id="score-me">0</span>
+                </div>
+                <div class="pc">
+                    <span class="icon-laptop icon"></span>
+                    <span id="score-pc">0</span>
+                </div>
 
+            </div>
+
+        </div>
     </body>
 
     <script src="scripts.js"></script>
