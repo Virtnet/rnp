@@ -1,5 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
+const buttons = document.querySelectorAll(".buttonchoose button");
+const resultSection = document.querySelector(".result");
+resultSection.classList.toggle('hidden');
 
 function getComputerChoice() {
     let random = Math.random()
@@ -21,9 +24,6 @@ function getComputerChoice() {
     return result;
 }
 
-
-
-
 function playRound(humanChoice, pcChoice) {
     humanChoice = humanChoice.toLowerCase();
     pcChoice = pcChoice.toLowerCase();
@@ -32,55 +32,83 @@ function playRound(humanChoice, pcChoice) {
     //ROCK
     if (humanChoice === "rock") {
         if (pcChoice === "rock") {
-            result = "No one won, the computer choice is " + pcChoice;
+            result = "Draw";
 
         } else if (pcChoice === "paper") {
-            result = "The computer choose " + pcChoice + " which BEATS " + humanChoice + " YOU LOST";
+            result = "Lose";
             computerScore += 1;
         } else {
-            result = "The computer choose " + pcChoice + " YOU WON! ";
+            result = "Win";
             humanScore += 1;
         }
 
         //PAPER
     } else if (humanChoice === "paper") {
         if (pcChoice === "rock") {
-            result = "The computer choose " + pcChoice + " YOU WON! "
+            result = "Win"
             humanScore += 1;
         } else if (pcChoice === "paper") {
-            result = "No one won, the computer choice is " + pcChoice;
+            result = "Draw";
         } else {
-            result = "The computer choose " + pcChoice + " which BEATS " + humanChoice + " YOU LOST";
+            result = "Lost";
             computerScore += 1;
         };
 
         // SCISSORS
     } else {
         if (pcChoice === "rock") {
-            result = "The computer choose " + pcChoice + " which BEATS " + humanChoice + " YOU LOST";
+            result = "Lost";
             computerScore += 1;
         } else if (pcChoice === "paper") {
-            result = "The computer choose " + pcChoice + " YOU WON! "
+            result = "Win"
             humanScore += 1;
-        } else { result = "No one won, the computer choice is " + pcChoice };
+        } else { result = "Draw"};
     }
 
     console.log(result);
+    return result;
 }
 
+function display(humanChoice,pcChoice){
+    let textShow;
+    textShow = playRound(humanChoice, pcChoice);
+    resultSection.innerHTML = "<h2>Your Choose: </h2> " 
+    + "<span class='yourChoice'>" + humanChoice 
+    + "</span>" +  "<span class='versus'> VS </span>" 
+    +  "<span class='enemyChoice'> " + pcChoice + "</span>";
+    
+    resultSection.innerHTML += "<h1>" + textShow + "</h1>"
+
+
+
+}
 
 function playGame() {
     let humanChoice;
     let pcChoice;
-    for (i = 0; i < 5; i++) {
-        humanChoice = prompt("Your choice?")
+    buttons.forEach(button => button.addEventListener("click", (e) => {
+        if(resultSection.classList.contains('hidden')) {resultSection.classList.toggle('hidden')};
+        humanChoice = e.target.innerHTML;
+        console.log(humanChoice);
         pcChoice = getComputerChoice();
         console.log(humanChoice + " " + pcChoice);
-        playRound(humanChoice, pcChoice);
-        console.log(i);
-    }
-    alert("Your score: " + humanScore + " computer score: " + computerScore);
-    console.log("Your score: " + humanScore + " computer score: " + computerScore);
+        display(humanChoice,pcChoice)
+    }))
+    console.log(buttons)
+    // let humanChoice = document.querySelectorAll();
+    // let pcChoice;
+
+    // for (i = 0; i < 5; i++) {
+
+        // console.log(i);
+    // }
+
+    // humanChoice = prompt("Your choice?")
+    // pcChoice = getComputerChoice();
+    // console.log(humanChoice + " " + pcChoice);
+    // playRound(humanChoice, pcChoice);
+    // alert("Your score: " + humanScore + " computer score: " + computerScore);
+    // console.log("Your score: " + humanScore + " computer score: " + computerScore);
 }
 
 playGame();

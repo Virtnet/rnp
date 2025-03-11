@@ -1,0 +1,47 @@
+* {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.buttonchoose button {
+    padding: 5px;
+    margin: 20px 20px;
+}
+
+.result {
+    text-align: center;
+    background: #ececec;
+    padding: 20px;
+    font-size: 18px;
+}
+
+
+.yourChoice {
+    color: green;
+}
+
+
+.enemyChoice {
+    color: red;
+}
+
+.versus {
+    padding: 10px 0 10px 0;
+    display: block;
+    color: gray;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.hidden {
+    visibility: hidden;
+}
