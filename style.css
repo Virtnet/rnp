@@ -21,11 +21,11 @@ body {
     margin: 20px 20px;
     display: inline-block;
     border: 2px solid #ececec;
-    cursor:pointer;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.buttonchoose div:hover{
+.buttonchoose div:hover {
     border: 2px solid rgb(0, 187, 255);
 }
 
@@ -46,9 +46,6 @@ body {
     border: 2px solid #f2f2f2;
     border-radius: 20px 20px 0 0;
     overflow: hidden;
-    -webkit-box-shadow: -2px 0px 15px 8px rgba(143, 143, 143, 0.25);
-    box-shadow: -2px 0px 15px 8px rgba(143, 143, 143, 0.25);
-
 }
 
 .states .title {
@@ -107,4 +104,19 @@ body {
 
 .hidden {
     visibility: hidden;
+}
+
+.popupwinner {
+    padding: 100px;
+    background: white;
+    border-radius: 50px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.boxshadow {
+    -webkit-box-shadow: -2px 0px 15px 8px rgba(143, 143, 143, 0.25);
+    box-shadow: -2px 0px 15px 8px rgba(143, 143, 143, 0.25);
 }

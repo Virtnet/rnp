@@ -1,10 +1,12 @@
 let humanScore = 0;
 let computerScore = 0;
+const toReach = 5;
 const buttons = document.querySelectorAll(".buttonchoose div");
 const resultSection = document.querySelector(".result");
 resultSection.classList.toggle('hidden');
 const humanScoreHTML = document.querySelector("#score-me");
 const pcScoreHTML = document.querySelector("#score-pc");
+const winnerPopUp = document.querySelector(".popupwinner");
 
 
 function getComputerChoice() {
@@ -80,9 +82,23 @@ function display(humanChoice,pcChoice){
     +  "<span class='enemyChoice'> " + pcChoice + "</span>";
     
     resultSection.innerHTML += "<h1>" + textShow + "</h1>"
-
     humanScoreHTML.textContent = humanScore;
     pcScoreHTML.textContent = computerScore;
+}
+
+function whoTheWinner(humanScore,computerScore){
+    if(humanScore > computerScore) return 'You';
+    if(computerScore > humanScore) return 'Computer';
+}
+
+function popUpWinner(winner) {
+    
+    winnerPopUp.classList.toggle("hidden");
+    if(winner === 'You') {
+        winnerPopUp.innerHTML= "<h1>You Win!</h1>"
+    } else {
+        winnerPopUp.innerHTML= "<h1>You Lose!</h1>"
+    }
 }
 
 function playGame() {
@@ -90,27 +106,22 @@ function playGame() {
     let pcChoice;
     buttons.forEach(button => button.addEventListener("click", (e) => {
         if(resultSection.classList.contains('hidden')) {resultSection.classList.toggle('hidden')};
-        humanChoice = e.target.id;
+        console.log(e);
+        humanChoice = e.currentTarget.id;
         console.log(humanChoice);
         pcChoice = getComputerChoice();
         console.log(humanChoice + " " + pcChoice);
         display(humanChoice,pcChoice)
+        if(humanScore >= toReach || computerScore >= toReach) {
+            let winner = whoTheWinner(humanScore,computerScore);
+            popUpWinner(popUpWinner);
+        }
+        
     }))
-    console.log(buttons)
-    // let humanChoice = document.querySelectorAll();
-    // let pcChoice;
+}
 
-    // for (i = 0; i < 5; i++) {
-
-        // console.log(i);
-    // }
-
-    // humanChoice = prompt("Your choice?")
-    // pcChoice = getComputerChoice();
-    // console.log(humanChoice + " " + pcChoice);
-    // playRound(humanChoice, pcChoice);
-    // alert("Your score: " + humanScore + " computer score: " + computerScore);
-    // console.log("Your score: " + humanScore + " computer score: " + computerScore);
+function reset(){
+    
 }
 
 playGame();
